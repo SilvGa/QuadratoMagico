@@ -22,15 +22,55 @@ public class Quadrato {
 	}
 	
 	private boolean checkRows() {
-		
+		for(int i=0; i<n; i++) {
+			int somma=0;
+			for(int j=0;j<n; j++) {
+				somma+= matrice.get(i*n+j);
+			}
+			if(somma!=magic) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	private boolean checkColumns() {
-		
+		for(int j=0;j<n; j++) {
+			int somma=0;
+			for(int i=0; i<n; i++) {
+				somma+= matrice.get(i*n+j);
+			}
+			if(somma!=magic) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean checkMainDiagonals() {
+		int somma=0;
+		for(int i=0; i<n; i++) {
+			somma+=this.matrice.get(i*n+i)
+		}
+		if(somma!=magic) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean checkSecondaryDiagonals() {
+		int somma=0;
+		for(int i=0; i<n; i++) {
+			somma+=this.matrice.get(i*n+n-1-i)
+		}
+		if(somma!=magic) {
+			return false;
+		}
+		return true;
 	}
 	
 	private boolean checkDiagonals() {
-		
+		return checkMainDiagonals() & checkSecondaryDiagonals();
 	}
 	
 	public boolean isValid() {
@@ -48,5 +88,25 @@ public class Quadrato {
 	
 	public void remove(int i) {
 		this.matrice.remove(Integer.valueOf(i));
+	}
+	
+	public int getN() {
+		return n;
+	}
+	
+	public void setN(int n) {
+		this.n=n;
+	}
+	
+	public List<Integer> getMatrice(){
+		return matrice;
+	}
+	
+	public void setMatrice(List<Integer> matrice) {
+		this.matrice=matrice;
+	}
+	
+	public String toString() {
+		return this.matrice.toString();
 	}
 }
